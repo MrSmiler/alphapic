@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+   
+    <div class="col-lg-3 col-lg-push-4 loginform">
+	<form method="post" action="{% url 'accounts:login' %}" >
+	    {% csrf_token %}
+	    {{ form.non_field_errors }}
+	    {% for field in form %}
+	    <div class="form-group">
+		{{ field.errors }}
+		{{ field.label_tag }}
+		{{ field }}
+	    </div>
+	    {% endfor %}
+	    <input class="btn btn-success form-control"   type="submit" value="Login" />	
+	</form>
+	<p class="text-center" style="margin-bottom:0px;"><a href="#">Forgot Your Password ?</a> </p>
+    </div>
+
+{% endblock %}

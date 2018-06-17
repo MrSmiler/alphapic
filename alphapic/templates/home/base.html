@@ -1,0 +1,85 @@
+
+<html>
+    <head>
+	{% load static %}
+	<title>AlphaPic</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="{% static 'home/style.css' %}" />
+	<script>
+$(document).ready(function(){
+    $(".like_button").click(function(event){
+	var image_id = event.target.id;
+	$.ajax({
+	url:'/image/like/',
+	data:{'image_id':image_id},	
+	dataType: 'json',
+	success: function(data){
+	    if(data.is_ok){
+		$("#image"+image_id).text(data.likes+" like");
+	    }
+	}
+		
+	});	
+    });
+});
+	</script>
+    </head>
+    <body>
+	 <nav class="navbar navbar-inverse">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">AlphaPic</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+		<li class="active"><a href="{% url 'home:index' %}">Profile</a></li>
+	    </ul>
+	    <form class="navbar-form navbar-left" action="{% url 'home:search' %}" method="get">
+	      <div class="input-group">
+		<input type="text" class="form-control" name='username' placeholder="Search">
+		<div class="input-group-btn">
+		  <button class="btn btn-default" type="submit">
+		    <i class="glyphicon glyphicon-search"></i>
+		  </button>
+		</div>
+	      </div>
+	    </form> 
+	    <ul class="nav navbar-nav navbar-right">
+	      {% if user.is_authenticated %}
+		 <li class="dropdown">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user }}
+		    <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+		      <li><a href="{% url 'home:upload' %}">Upload</a></li>
+		      <li><a href="#">Profile</a></li>
+		      <li><a href="#">Change Password</a></li>
+		    </ul>
+		 </li> 
+
+	      {% else %}
+	      <li><a href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	      <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      {% endif %}
+	    </ul>
+	  </div>
+	</nav> 	
+	
+	<div class="container">
+
+	    {% block content %}	
+
+	    {% endblock %}
+
+	</div>
+
+	
+    </body>
+
+</html>
+

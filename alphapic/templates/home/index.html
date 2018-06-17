@@ -1,0 +1,59 @@
+
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+    
+    {% if user.is_authenticated %}
+	<div class="row profile">
+	     
+		<div class="col-lg-4 text-center" style="padding-top:50px;padding-bottom:50px;">
+		    {% if user.profile_pic %}
+			<img src="{{ user.profile_pic.url }}" width="200" class="img-circle"/>
+		    {% else %}
+			
+			<img src="{% static 'home/pictures/user.png' %}" width="100" class="img-circle"/>
+		    {% endif %}
+		</div>
+		<div class="col-lg-8" >
+		    <div class="row">
+			<h2 class="col-lg-6">{{ user }}</h2>
+		    </div>
+		    <div class="row" style="margin-top:20px;">
+			<div class="col-lg-4">
+			    <span> posts</span>
+			</div>
+			<div class="col-lg-4">
+			    <span>Followers</span>
+			</div>
+			<div class="col-lg-4">
+			    <span>Following </span>
+			</div>
+
+		    </div>
+		    <div class="row" style="margin-top:30px;">
+			<div class="col-lg-6">
+			<span>Bio :</span>
+			<p>{{ user.bio }} </p>
+			</div>
+		    </div>
+		</div>
+	</div>
+	<div class="row">
+	    {% for image in user.picture_set.all %}
+		<div class="col-lg-4" style="height:350px;">
+		    <div class="" style="border:solid 1px gray;padding:5px 5px;border-radius:5px;">
+			<img src="{{ image.image.url }}" width="100%" />
+			<div class="caption" style="padding:10px 10px;">
+			    <p> <span class="badge">{{image.likes }} like </span></p>
+			</div>
+		    </div>	    
+		</div>
+	    {% endfor %}
+	</div>
+    {% else %}
+    <h2> Welcome to index page </h2>
+
+    {% endif %}
+
+{% endblock %}

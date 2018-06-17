@@ -1,0 +1,23 @@
+
+
+.loginform{
+    background-color: #e5e8e8 ;
+    padding:30px 30px;
+    padding-bottom:20px;
+    border-radius:20px;
+}
+
+.errorlist {
+
+    background-color:   #f5b7b1  ;
+    border-radius:20px;
+    padding:10px 10px;
+    list-style:none;
+    
+}
+
+.profile{
+    background-color:   #e5e8e8 ;
+    margin-bottom:30px;
+    border-radius:30px;
+}
