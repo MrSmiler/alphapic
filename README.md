@@ -1,4 +1,4 @@
 # alphapic
 instagram like website with django
 <br>
-<img src="https://pasteboard.co/HsNfsjh.png" />
+<img src="https://cdn.pbrd.co/images/HsNfsjh.png" />
