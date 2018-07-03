@@ -3,7 +3,7 @@
 
 {% block content %}
    
-    <div class="col-lg-3 col-lg-push-4 loginform">
+    <div class="col-lg-3 col-lg-push-4 alphaform">
 	<form method="post" action="{% url 'accounts:signup' %}" >
 	    {% csrf_token %}
 	    {{ form.non_field_errors }}

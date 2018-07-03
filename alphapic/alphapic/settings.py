@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from django.urls import reverse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# login_requierd need this variable to know where redirect user if it's not
+# login
+LOGIN_URL = 'account/login'
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +30,6 @@ SECRET_KEY = 'x1k#ku_4)f1lml-k%0ec&a2w5y6$7%fm@v2zb4@(#u!nn7$d41'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,6 +50,7 @@ AUTH_USER_MODEL = 'home.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -128,6 +133,12 @@ STATICFILES_DIRS = [
 
         ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+LOCALE_PATHS = [ 
+    os.path.join(BASE_DIR, 'locale'),
+        ]
+
 

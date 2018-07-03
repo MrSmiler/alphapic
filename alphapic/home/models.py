@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 import os
 
 # Create your models here.
@@ -14,7 +15,12 @@ class User(AbstractUser):
     # profile picture of the user
     profile_pic = models.ImageField(upload_to='uploaded/', null=True)
 
-
+    def how_old(self):
+        now = timezone.now()
+        age = now.year -  self.birth_date.year  
+        if now.month > self.birth_date.month:
+            age -= 1
+        return age
 
 
 class Picture(models.Model):
@@ -34,10 +40,24 @@ class Picture(models.Model):
         return os.path.basename(self.image.name)
 
 
+
 class Relation(models.Model):
 
-    following = models.ForeignKey('User', on_delete=models.CASCADE, related_name='who_follows')
+    follower = models.ForeignKey('User', on_delete=models.CASCADE,
+            related_name='user_following')
+    following = models.ForeignKey('User', on_delete=models.CASCADE,
+            related_name='user_followers')
 
-    follower = models.ForeignKey('User', on_delete=models.CASCADE, related_name='who_is_followed')
+
+    def __str__(self):
+        return str(self.follower) +' follows '+ str(self.following)
+
+
+class ImageLike(models.Model):
+    # this table shows that some user liked some picture
+
+    picture = models.ForeignKey('Picture', on_delete=models.CASCADE)
+
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
 
 

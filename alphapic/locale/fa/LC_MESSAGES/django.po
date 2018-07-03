@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-01 19:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: accounts/forms.py:9 accounts/forms.py:20
+msgid "Username"
+msgstr "نام کاربری"
+
+#: accounts/forms.py:10
+#, fuzzy
+#| msgid "Change Password"
+msgid "Password"
+msgstr "تغییر گذرواژه"
+
+#: accounts/forms.py:21
+msgid "Email"
+msgstr "ایمیل"
+
+#: accounts/forms.py:22 accounts/forms.py:41
+msgid "PassWord1"
+msgstr "گذرواژه ۱"
+
+#: accounts/forms.py:23 accounts/forms.py:42
+msgid "PassWord2"
+msgstr "گذرواژه ۲"
+
+#: accounts/forms.py:30
+msgid "Birth Date"
+msgstr "تاریخ تولد"
+
+#: accounts/forms.py:31
+msgid "bio"
+msgstr "بیوگرافی"
+
+#: accounts/forms.py:40
+msgid "Old PassWord"
+msgstr "گذرواژه قدیمی"
+
+#: templates/home/base.html:5 templates/home/base.html:100
+msgid "AlphaPic"
+msgstr "آلفاپیک"
+
+#: templates/home/base.html:23 templates/home/base.html:43
+#: templates/home/base.html:46 templates/home/user_navigate.html:55
+msgid "like"
+msgstr "دوست داشتن"
+
+#: templates/home/base.html:26 templates/home/user_navigate.html:61
+msgid "UnLike"
+msgstr "دوست نداشتم"
+
+#: templates/home/base.html:64 templates/home/user_navigate.html:25
+msgid "UnFollow"
+msgstr "دنبال نکردن"
+
+#: templates/home/base.html:83 templates/home/user_navigate.html:23
+msgid "Follow"
+msgstr "دنبال کردن"
+
+#: templates/home/base.html:103
+msgid "Profile"
+msgstr "ناحیه کاربری"
+
+#: templates/home/base.html:104
+msgid "fa"
+msgstr "فارسی"
+
+#: templates/home/base.html:105
+msgid "en"
+msgstr "انگلیسی"
+
+#: templates/home/base.html:123
+msgid "Logout"
+msgstr "خروج"
+
+#: templates/home/base.html:124
+msgid "Upload"
+msgstr "آپلود"
+
+#: templates/home/base.html:125
+msgid "Profile Settings"
+msgstr "تنظیمات ناحیه کاربری"
+
+#: templates/home/base.html:126
+msgid "Change Password"
+msgstr "تغییر گذرواژه"
+
+#: templates/home/base.html:131
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: templates/home/base.html:132
+msgid "Login"
+msgstr "ورود"
+
+#: templates/home/user_navigate.html:31
+msgid "posts"
+msgstr "پست"
+
+#: templates/home/user_navigate.html:34
+msgid "Followers"
+msgstr "دنبال کنندگان"
+
+#: templates/home/user_navigate.html:37
+msgid "Following"
+msgstr "دنبال شونده"
+
+#: templates/home/user_navigate.html:58
+msgid "Like"
+msgstr "دوست داشتم"

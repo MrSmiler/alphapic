@@ -1,8 +1,8 @@
-
+{% load i18n %}
 <html>
     <head>
 	{% load static %}
-	<title>AlphaPic</title>
+	<title>{% trans "AlphaPic" %}</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<!-- jQuery library -->
@@ -13,20 +13,83 @@
 	<link rel="stylesheet" href="{% static 'home/style.css' %}" />
 	<script>
 $(document).ready(function(){
-    $(".like_button").click(function(event){
+    $('body').on('click', '.like', function(event) {
 	var image_id = event.target.id;
 	$.ajax({
-	url:'/image/like/',
-	data:{'image_id':image_id},	
+	url:'/image/like/'+image_id,
 	dataType: 'json',
 	success: function(data){
 	    if(data.is_ok){
-		$("#image"+image_id).text(data.likes+" like");
+		$("#image"+image_id).text(data.likes+" {% trans 'like' %}");
+		$("#"+image_id).removeClass();
+		$("#"+image_id).addClass('btn btn-danger unlike');
+		$("#"+image_id).text('{% trans "UnLike" %}')
+	    }
+	    if(data.msg){
+		alert(data.msg);
+	    }
+	}
+		
+	});
+    });
+    
+    $('body').on('click', '.unlike', function(event) {
+	var image_id = event.target.id;
+	$.ajax({
+	url:'/image/unlike/'+image_id,
+	dataType: 'json',
+	success: function(data){
+	    if(data.is_ok){
+		$("#image"+image_id).text(data.likes+"{% trans 'like' %}");
+		$("#"+image_id).removeClass();
+		$("#"+image_id).addClass('btn btn-success like');
+		$("#"+image_id).text('{% trans "like" %}')
 	    }
 	}
 		
 	});	
+
+    
     });
+    $('body').on('click', '.follow_button', function(event) {
+	var id = (event.target.id).split('_');
+	var user_id = id[1];
+	$.ajax({
+	url:'/follow/'+user_id,
+	dataType: 'json',
+	success: function(data){
+	    if(data.is_ok){
+		$("#user_"+user_id).removeClass();
+		$("#user_"+user_id).addClass('btn btn-info unfollow_button');
+		$("#user_"+user_id).text('{% trans "UnFollow" %}')
+	    }
+	}
+		
+	});	
+
+
+
+    });
+    $('body').on('click', '.unfollow_button', function(event) {
+	var id = (event.target.id).split('_');
+	var user_id = id[1];
+	$.ajax({
+	url:'/unfollow/'+user_id,
+	dataType: 'json',
+	success: function(data){
+	    if(data.is_ok){
+		$("#user_"+user_id).removeClass();
+		$("#user_"+user_id).addClass('btn btn-info follow_button');
+		$("#user_"+user_id).text('{% trans "Follow" %}')
+	    }
+	}
+		
+	});	
+
+
+
+    });
+	
 });
 	</script>
     </head>
@@ -34,10 +97,12 @@ $(document).ready(function(){
 	 <nav class="navbar navbar-inverse">
 	  <div class="container">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">AlphaPic</a>
+		<a class="navbar-brand" href="#">{% trans "AlphaPic" %}</a>
 	    </div>
 	    <ul class="nav navbar-nav">
-		<li class="active"><a href="{% url 'home:index' %}">Profile</a></li>
+		<li class="active"><a href="{% url 'home:index' %}">{% trans "Profile" %}</a></li>
+		<li class=""><a href="{% url 'home:ch_language' 'fa' %}">{% trans "fa" %}</a></li>
+		<li class=""><a href="{% url 'home:ch_language' 'en' %}">{% trans "en" %}</a></li>
 	    </ul>
 	    <form class="navbar-form navbar-left" action="{% url 'home:search' %}" method="get">
 	      <div class="input-group">
@@ -55,16 +120,16 @@ $(document).ready(function(){
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user }}
 		    <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
-		      <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
-		      <li><a href="{% url 'home:upload' %}">Upload</a></li>
-		      <li><a href="#">Profile</a></li>
-		      <li><a href="#">Change Password</a></li>
+			<li><a href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a></li>
+			<li><a href="{% url 'home:upload' %}">{% trans "Upload" %}</a></li>
+			<li><a href="{% url 'accounts:profile_settings' %}">{% trans "Profile Settings" %} </a></li>
+			<li><a href="{% url 'accounts:ch_password' %}">{% trans "Change Password" %}</a></li>
 		    </ul>
 		 </li> 
 
 	      {% else %}
-	      <li><a href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	      <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      <li><a href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span>{% trans "Sign Up" %}</a></li>
+	      <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
 	      {% endif %}
 	    </ul>
 	  </div>
